@@ -13,6 +13,24 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+/*  
+    sr = scren read 
+    Estamos ocultando os nomes com a classe 'sr-only'
+    Mas, mantemos disponvel para a leitura de tela
+    Isto facilita a ACESSIBILIDADE
+*/
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 .container {
     width: min(90vw, 800px);
     margin: auto;   
