@@ -1,5 +1,7 @@
 :root {
     --dark-blue: #363f5f;
+    --green: #2d4a22;
+    --light-green: #3dd705;
 }
 
 * {
@@ -45,9 +47,24 @@ h2 {
     font-weight: normal;
 }
 
+/* Links e Buttons */
+a {
+    color: var(--green);
+    text-decoration: none; /* retura o sublinhado do link */
+}
+
+a:hover {
+    color: var(--light-green);
+}
+
+.button.new {
+    display: inline-block; /* container de tamanho exato ao elemento */
+    margin-bottom: .8rem;
+}
+
 /* Header */
 header {
-    background: #2d4a22;
+    background: var(--green);
     padding: 2rem 0 10rem;
     text-align: center;
 }
