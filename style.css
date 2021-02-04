@@ -82,6 +82,10 @@ header {
 .card h3 {
     font-weight: normal;
     font-size: 1rem;
+
+    display: flex; /* ativa as propriedades de posicionar elementos na tela */
+    align-items: center; /* alinha o elemento na horizontal */
+    justify-content: space-between; /* separa os elementos levando-os para os extremos do container */
 }
 
 .card p {
