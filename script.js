@@ -110,14 +110,23 @@ const DOM = {
 }
 
 const Utils = {
+    formatAmount(value){
+        value = Number(value.replace(/\,\./g, "")) * 100
+        
+        return value
+    },
+
+    formatDate(date) {
+        const splittedDate = date.split("-")
+        return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
+    },
+
     formatCurrency(value) {
         const signal = Number(value) < 0 ? "-" : "";
 
         value = String(value).replace(/\D/g, "");
 
         value = Number(value) / 100;
-
-        value = value * 100;
 
         value = value.toLocaleString("pt-BR", {
             style: "currency",
@@ -143,7 +152,7 @@ const Form = {
 
     validateFields() {
         const { description, amount, date } = Form.getValues()
-        
+        console.log(Form.getValues())
         if( description.trim() === "" || 
             amount.trim() === "" || 
             date.trim() === "" ) {
@@ -151,10 +160,39 @@ const Form = {
         }
     },
 
+    formatValues() {
+        let { description, amount, date } = Form.getValues()
+         console.log(Form.getValues())
+        amount = Utils.formatAmount(amount)
+        console.log(amount)
+        date = Utils.formatDate(date)
+        console.log(date)
+        return {
+            description,
+            amount,
+            date
+        }
+    },
+
+    clearFields() {
+        Form.description.value = ""
+        Form.amount.value = ""
+        Form.date.value = ""
+    },
+
     submit(event){
         event.preventDefault();
         try {
             Form.validateFields()
+            console.log("Aqui 1")
+            const transaction = Form.formatValues()
+            console.log(transaction)
+            Transaction.add(transaction)
+            console.log("Aqui 2")
+            Form.clearFields()
+            console.log("Aqui 3")
+            Modal.close()
+            console.log("Aqui 4")
         }
         catch (error) {
             alert(error.message)
