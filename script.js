@@ -43,6 +43,11 @@ const  Transaction = {
 
         App.reload();
     },
+    remove(index){
+        Transaction.all.splice(index, 1);
+
+        App.reload();
+    },
     incomes(){ //somar entradas
         let income = 0;
         Transaction.all.forEach(transaction => {
@@ -143,9 +148,4 @@ const App = {
 
 App.init();
 
-Transaction.add({
-    id: 39,
-    description: 'Alo',
-    amount: 200,
-    date: '22/12/2016'  
-})
+Transaction.remove(2);
