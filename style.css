@@ -209,6 +209,10 @@ td.description {
     color: var(--dark-blue);
 }
 
+td.income {
+    color: #12a454;
+}
+
 td.expense {
     color: #e92929;
 }
