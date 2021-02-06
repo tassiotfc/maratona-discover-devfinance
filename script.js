@@ -13,27 +13,19 @@ const Modal = {
     }
 }
 
+const Storage = {
+    get() {
+        return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
+    },
+
+    set(transactions) {
+        localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
+    }
+}
+
+
 const  Transaction = {
-    all: [
-        {
-            id: 1,
-            description: 'Luz',
-            amount: -5000,
-            date: '23/05/2015',
-        },
-        {
-            id: 2,
-            description: 'Website',
-            amount: 15000,
-            date: '23/05/2018',
-        },
-        {
-            id: 3,
-            description: 'Internet',
-            amount: -2000,
-            date: '23/05/2016',
-        }
-    ],
+    all: Storage.get(),
 
     add(transaction){
         Transaction.all.push(transaction);
@@ -79,7 +71,7 @@ const DOM = {
 
         DOM.transactionsContainer.appendChild(tr);
     },
-    
+
     innerHTMLTransaction(transaction, index) {
         const CSSclass = transaction.amount > 0 ? "income" : "expense";
 
@@ -212,6 +204,8 @@ const App = {
         })
 
         DOM.updateBalance()
+
+        Storage.set(Transaction.all)
     },
     reload() {
         DOM.clearTransaction();
@@ -219,4 +213,4 @@ const App = {
     }
 }
 
-App.init();
+App.init(); 
